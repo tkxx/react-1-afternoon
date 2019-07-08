@@ -5,55 +5,49 @@ class FilterString extends Component {
     super();
 
     this.state = {
-      names: [
-        "Henry",
-        "Mitchell",
-        "Ali",
-        "Vineeth",
-        "Tabitha",
-        "Ismail",
-        "Phillip"
-      ],
+      unfilteredArray: ["Philip", "Ismail", "Ali", "Vineeth", "Lopez"],
       userInput: "",
-      filteredNames: []
+      filteredArray: []
     };
   }
 
-  handleChange(val) {
-    this.setState({ userInput: val });
+  handleChange(value) {
+    this.setState({ userInput: value });
   }
 
-  filterNames(userInput) {
-    let names = this.state.names;
-    let filteredNames = [];
+  filterArray(userInput) {
+    let unFiltered = this.state.unfilteredArray;
+    let filteredArray = [];
 
-    for (let i = 0; i < names.length; i++) {
-      if (names[i].includes(userInput)) {
-        filteredNames.push(names[i]);
+    for (let i = 0; i < unFiltered.length; i++) {
+      if (unFiltered[i].includes(userInput)) {
+        filteredArray.push(unFiltered[i]);
       }
     }
-    this.setState({ filteredNames: filteredNames });
+    this.setState({ filteredArray: filteredArray });
   }
 
   render() {
     return (
-      <div className="puzzleBox filterStringPB">
+      <div className="puzzleBox filterString PB">
         <h4>Filter String</h4>
         <span className="puzzleText">
-          Names: {JSON.stringify(this.state.names, null, 10)}
+          Names: {JSON.stringify(this.state.unfilteredArray)}
         </span>
         <input
           className="inputLine"
-          onChange={e => this.handleChange(e.target.value)}
+          onChange={e => {
+            this.handleChange(e.target.value);
+          }}
         />
         <button
           className="confirmationButton"
-          onClick={() => this.filterNames(this.state.userInput)}
+          onClick={e => this.filterArray(this.state.userInput)}
         >
           Filter
         </button>
         <span className="resultsBox filterStringRB">
-          Filtered Names: {JSON.stringify(this.state.filteredNames, null, 10)}
+          Filtered Names: {JSON.stringify(this.state.filteredArray)}
         </span>
       </div>
     );

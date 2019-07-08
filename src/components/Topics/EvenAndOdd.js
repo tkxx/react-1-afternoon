@@ -1,31 +1,33 @@
 import React, { Component } from "react";
 
 class EvenAndOdd extends Component {
-  constructor(evenArr, oddArr, userInput) {
+  constructor() {
     super();
+
     this.state = {
-      evenArr: [],
-      oddArr: [],
+      evenArray: [],
+      oddArray: [],
       userInput: ""
     };
   }
 
-  handleChange(val) {
-    this.setState({ userInput: val });
+  handleChange(value) {
+    this.setState({ userInput: value });
   }
 
-  getEvenAndOdds(userInput) {
-    let arr = userInput.split(",");
+  assignEvenAndOdds(userInput) {
+    let arr = this.state.userInput.split(",");
     let evens = [];
     let odds = [];
+
     for (let i = 0; i < arr.length; i++) {
       if (arr[i] % 2 === 0) {
-        evens.push(parseInt(arr[i], 10));
+        evens.push(arr[i]);
       } else {
-        odds.push(parseInt(arr[i], 10));
+        odds.push(arr[i]);
       }
     }
-    this.setState({ evenArr: evens, oddArr: odds });
+    this.setState({ evenArray: evens, oddArray: odds });
   }
 
   render() {
@@ -38,14 +40,18 @@ class EvenAndOdd extends Component {
         />
         <button
           className="confirmationButton"
-          onClick={() => {
-            this.getEvenAndOdds(this.state.userInput);
+          onClick={e => {
+            this.assignEvenAndOdds(this.state.userInput);
           }}
         >
-          Sort
+          Split
         </button>
-        <span className="resultsBox">Evens: {this.state.evenArr} </span>
-        <span className="resultsBox">Odds: {this.state.oddArr} </span>
+        <span className="resultsBox">
+          Evens: {JSON.stringify(this.state.evenArray)}
+        </span>
+        <span className="resultsBox">
+          Odds: {JSON.stringify(this.state.oddArray)}
+        </span>
       </div>
     );
   }

@@ -11,12 +11,12 @@ class Sum extends Component {
     };
   }
 
-  updateNumber1(val) {
-    this.setState({ number1: parseInt(val, 10) });
+  handleUpdate1(value) {
+    this.setState({ number1: +value });
   }
 
-  updateNumber2(val) {
-    this.setState({ number2: parseInt(val, 10) });
+  handleUpdate2(value) {
+    this.setState({ number2: +value });
   }
 
   add(num1, num2) {
@@ -30,16 +30,16 @@ class Sum extends Component {
         <input
           className="inputLine"
           type="number"
-          onChange={e => this.updateNumber1(e.target.value)}
+          onClick={e => this.handleUpdate1(e.target.value)}
         />
         <input
           className="inputLine"
           type="number"
-          onChange={e => this.updateNumber2(e.target.value)}
+          onClick={e => this.handleUpdate2(e.target.value)}
         />
         <button
           className="confirmationButton"
-          onClick={() => this.add(this.state.number1, this.state.number2)}
+          onClick={e => this.add(this.state.number1, this.state.number2)}
         >
           Add
         </button>

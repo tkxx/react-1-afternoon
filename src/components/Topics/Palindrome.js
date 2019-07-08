@@ -10,8 +10,8 @@ class Palindrome extends Component {
     };
   }
 
-  handleChange(val) {
-    this.setState({ userInput: val });
+  handleChange(value) {
+    this.setState({ userInput: value });
   }
 
   isPalindrome(userInput) {
@@ -42,7 +42,7 @@ class Palindrome extends Component {
         >
           Check
         </button>
-        <span className="resultsBox">Palindrome: {this.state.palindrome}</span>
+        <span className="resultsBox">Palindrome: {this.state.palindrome} </span>
       </div>
     );
   }
